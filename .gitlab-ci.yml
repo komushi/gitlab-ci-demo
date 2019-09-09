@@ -6,6 +6,6 @@ stages:
 deploy_job:
   stage: deploy
   script:
-    - pip3 install awscli --upgrade --user
+    - pip3 install awscli --upgrade
     - aws list
 
