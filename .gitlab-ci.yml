@@ -1,0 +1,11 @@
+image: python:3.6.9-slim
+
+stages:
+  - deploy
+
+deploy_job:
+  stage: deploy
+  script:
+    - pip3 install awscli --upgrade --user
+    - aws list
+
