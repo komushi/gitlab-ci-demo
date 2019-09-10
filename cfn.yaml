@@ -77,7 +77,7 @@ Resources:
   IoTAccessPolicy:
     Type: AWS::IoT::Policy
     Properties:
-      PolicyName: IoTAccess
+      PolicyName: IoTAccessPolicy
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
