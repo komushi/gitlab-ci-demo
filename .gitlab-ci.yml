@@ -9,6 +9,7 @@ deploy_job:
     STACK_NAME: iot-policy
     REGION: ap-northeast-1
   script:
+    - aws configure set default.region $REGION
     - export count=$(aws cloudformation list-stacks | jq -r --arg STACK_NAME "$STACK_NAME" '[.StackSummaries[] | select(.StackName==$STACK_NAME and (.StackStatus=="UPDATE_COMPLETE" or .StackStatus=="CREATE_COMPLETE"))] | length')
     - if (("$count" > "0")); then echo "stack exists"; else echo "stack does not exist"; fi
 
