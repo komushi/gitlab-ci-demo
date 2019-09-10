@@ -1,6 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Setup AWS IoT Policies and IAM Roles
-Parameters
 Resources:
   IoTProvisioningRole:
     Type: AWS::IAM::Role
