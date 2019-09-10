@@ -19,29 +19,7 @@ Resources:
           Statement:
           - Effect: Allow
             Action:
-            - iot:AddThingToThingGroup
-            - iot:AttachPrincipalPolicy
-            - iot:AttachThingPrincipal
-            - iot:CreateCertificateFromCsr
-            - iot:CreatePolicy
-            - iot:CreateThing
-            - iot:DescribeCertificate
-            - iot:DescribeThing
-            - iot:DescribeThingGroup
-            - iot:DescribeThingType
-            - iot:DetachThingPrincipal
-            - iot:GetPolicy
-            - iot:ListPolicyPrincipals
-            - iot:ListPrincipalPolicies
-            - iot:ListPrincipalThings
-            - iot:ListThingGroupsForThing
-            - iot:ListThingPrincipals
-            - iot:RegisterCertificate
-            - iot:RegisterThing
-            - iot:RemoveThingFromThingGroup
-            - iot:UpdateCertificate
-            - iot:UpdateThing
-            - iot:UpdateThingGroupsForThing
+            - iot:*
             Resource: '*'
       - PolicyName: ThingRegistrationLogginPolicy
         PolicyDocument:
@@ -49,13 +27,7 @@ Resources:
           Statement:
           - Effect: Allow
             Action:
-            - logs:CreateLogGroup
-            - logs:CreateLogStream
-            - logs:PutLogEvents
-            - logs:PutMetricFilter
-            - logs:PutRetentionPolicy
-            - logs:GetLogEvents
-            - logs:DeleteLogStream
+            - logs:*
             Resource: '*'
       - PolicyName: ThingRegistrationRuleActionPolicy
         PolicyDocument:
