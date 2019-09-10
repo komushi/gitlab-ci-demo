@@ -84,6 +84,7 @@ Resources:
         - Sid: MQTTConnect
           Action:
           - iot:Connect
+          - iot:Publish
           Effect: Allow
           Resource:
             Fn::Join:
@@ -99,15 +100,3 @@ Resources:
           - iot:Receive
           Effect: Allow
           Resource: '*'
-        - Sid: MQTTWrite
-          Action:
-          - iot:Publish
-          Effect: Allow
-          Resource:
-            Fn::Join:
-            - ''
-            - - 'arn:aws:iot:'
-              - Fn::Sub: ${AWS::Region}
-              - ':'
-              - Fn::Sub: ${AWS::AccountId}
-              - :topic/${iot:Certificate.Subject.CommonName}
