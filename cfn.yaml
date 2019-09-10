@@ -4,7 +4,7 @@ Resources:
   IoTProvisioningRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: IoTProvisioningRole
+      RoleName: IoTProvisioning
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -49,7 +49,7 @@ Resources:
   IoTAccessPolicy:
     Type: AWS::IoT::Policy
     Properties:
-      PolicyName: IoTAccessPolicy
+      PolicyName: IoTAccess
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
