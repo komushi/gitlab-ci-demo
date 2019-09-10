@@ -16,6 +16,6 @@ deploy_job:
     - export create_var="aws cloudformation create-change-set --stack-name $STACK_NAME --change-set-name=$CHANGE_SET --template-body=file://$PWD/cfn.yaml --capabilities CAPABILITY_NAMED_IAM"
     - export execute_var="aws cloudformation execute-change-set --stack-name $STACK_NAME --change-set-name $CHANGE_SET"
     - export count=$(aws cloudformation list-stacks | jq -r --arg STACK_NAME "$STACK_NAME" '[.StackSummaries[] | select(.StackName==$STACK_NAME and (.StackStatus=="UPDATE_COMPLETE" or .StackStatus=="CREATE_COMPLETE"))] | length')
-    - if (("$count" > "0")); then echo "stack exists"; $create_var; $execute_var; else echo "stack does not exist"; exit 1; fi
+    - if (("$count" > "0")); then echo "stack exists"; $create_var; $execute_var; else echo "stack does not exist"; $deploy_var; fi
 
 
