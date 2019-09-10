@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Setup AWS IoT Policies and IAM Roles
+Parameters
 Resources:
   IoTProvisioningRole:
     Type: AWS::IAM::Role
@@ -19,7 +20,29 @@ Resources:
           Statement:
           - Effect: Allow
             Action:
-            - iot:*
+            - iot:AddThingToThingGroup
+            - iot:AttachPrincipalPolicy
+            - iot:AttachThingPrincipal
+            - iot:CreateCertificateFromCsr
+            - iot:CreatePolicy
+            - iot:CreateThing
+            - iot:DescribeCertificate
+            - iot:DescribeThing
+            - iot:DescribeThingGroup
+            - iot:DescribeThingType
+            - iot:DetachThingPrincipal
+            - iot:GetPolicy
+            - iot:ListPolicyPrincipals
+            - iot:ListPrincipalPolicies
+            - iot:ListPrincipalThings
+            - iot:ListThingGroupsForThing
+            - iot:ListThingPrincipals
+            - iot:RegisterCertificate
+            - iot:RegisterThing
+            - iot:RemoveThingFromThingGroup
+            - iot:UpdateCertificate
+            - iot:UpdateThing
+            - iot:UpdateThingGroupsForThing
             Resource: '*'
       - PolicyName: ThingRegistrationLogginPolicy
         PolicyDocument:
@@ -27,7 +50,13 @@ Resources:
           Statement:
           - Effect: Allow
             Action:
-            - logs:*
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            - logs:PutMetricFilter
+            - logs:PutRetentionPolicy
+            - logs:GetLogEvents
+            - logs:DeleteLogStream
             Resource: '*'
       - PolicyName: ThingRegistrationRuleActionPolicy
         PolicyDocument:
@@ -53,9 +82,10 @@ Resources:
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
-        - Sid: MQTTConnect
+        - Sid: MQTTConnectPublish
           Action:
           - iot:Connect
+          - iot:Publish
           Effect: Allow
           Resource:
             Fn::Join:
@@ -71,15 +101,3 @@ Resources:
           - iot:Receive
           Effect: Allow
           Resource: '*'
-        - Sid: MQTTWrite
-          Action:
-          - iot:Publish
-          Effect: Allow
-          Resource:
-            Fn::Join:
-            - ''
-            - - 'arn:aws:iot:'
-              - Fn::Sub: ${AWS::Region}
-              - ':'
-              - Fn::Sub: ${AWS::AccountId}
-              - :topic/${iot:Certificate.Subject.CommonName}
