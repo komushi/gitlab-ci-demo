@@ -1,4 +1,4 @@
-image: python:3.6.9-slim
+image: atlassian/pipelines-awscli:latest
 
 stages:
   - deploy
@@ -6,6 +6,5 @@ stages:
 deploy_job:
   stage: deploy
   script:
-    - pip3 install awscli --upgrade
     - aws s3 ls
 
