@@ -4,7 +4,7 @@ Resources:
   IoTProvisioningRole:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: IoTProvisioning
+      RoleName: IoTProvisioningRole
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -81,10 +81,9 @@ Resources:
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
-        - Sid: MQTTConnectPublish
+        - Sid: MQTTConnect
           Action:
           - iot:Connect
-          - iot:Publish
           Effect: Allow
           Resource:
             Fn::Join:
@@ -100,3 +99,15 @@ Resources:
           - iot:Receive
           Effect: Allow
           Resource: '*'
+        - Sid: MQTTWrite
+          Action:
+          - iot:Publish
+          Effect: Allow
+          Resource:
+            Fn::Join:
+            - ''
+            - - 'arn:aws:iot:'
+              - Fn::Sub: ${AWS::Region}
+              - ':'
+              - Fn::Sub: ${AWS::AccountId}
+              - :topic/${iot:Certificate.Subject.CommonName}
