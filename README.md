@@ -57,7 +57,6 @@ $ git push
 * use "git push -o ci.skip"
 * use "except" in .gitlab-ci.yml
 
-
 ### 2-2. Check the CI/CD page on GitLab
 
 # References:
