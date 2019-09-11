@@ -1,5 +1,6 @@
 AWSTemplateFormatVersion: 2010-09-09
 Description: Setup AWS IoT Policies and IAM Roles
+Parameters:
 Resources:
   IoTProvisioningRole:
     Type: AWS::IAM::Role
@@ -49,7 +50,13 @@ Resources:
           Statement:
           - Effect: Allow
             Action:
-            - logs:*
+            - logs:CreateLogGroup
+            - logs:CreateLogStream
+            - logs:PutLogEvents
+            - logs:PutMetricFilter
+            - logs:PutRetentionPolicy
+            - logs:GetLogEvents
+            - logs:DeleteLogStream
             Resource: '*'
       - PolicyName: ThingRegistrationRuleActionPolicy
         PolicyDocument:

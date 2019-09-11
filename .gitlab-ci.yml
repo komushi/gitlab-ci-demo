@@ -1,6 +1,7 @@
 image: atlassian/pipelines-awscli:latest
 
 stages:
+  - build
   - deploy
 
 build_job:
