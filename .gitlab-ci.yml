@@ -4,7 +4,7 @@ stages:
   - validate
   - deploy
 
-build_job:
+validate_job:
   stage: validate
   variables:
     REGION: ap-northeast-1
