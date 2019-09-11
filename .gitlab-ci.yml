@@ -31,6 +31,8 @@ deploy_job:
 #    - if (("$count" > "0")); then echo "stack exists"; $create_var; $describe_var; sleep 3; $describe_var; $execute_var; else echo "stack does not exist"; $deploy_var; fi
     - $create_var
     - $describe_var
+    - sleep 3
+    - $execute_var
   only:
     - master
 
