@@ -1,13 +1,12 @@
 image: atlassian/pipelines-awscli:latest
 
 stages:
-  - build
+  - validate
   - deploy
 
 build_job:
-  stage: build
+  stage: validate
   variables:
-    STACK_NAME: iot-policy
     REGION: ap-northeast-1
   script:
     - aws configure set default.region $REGION
