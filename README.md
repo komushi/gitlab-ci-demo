@@ -1,4 +1,4 @@
-# GitLab CI/CD DEMO for CloudFormation
+# GitLab CI DEMO for CloudFormation
 
 ## 0. Prerequisite
 * A GitLab Server with GitLab Runner.
@@ -19,7 +19,6 @@ image: atlassian/pipelines-awscli:latest
 * Jobs of the next stage are run after the jobs from the previous stage complete successfully.
 
 ### stages example
-
 ```
 stages:
   - build
@@ -45,6 +44,21 @@ stages:
 * aws cloudformation create-change-set
 * aws cloudformation describe-change-set
 * aws cloudformation execute-change-set
+
+## 2. Using GitLab CI
+### 2-1. Edit cfn.yaml and add/commit/push.
+```
+$ git add .
+$ git commit -m 'message'
+$ git push
+```
+
+### Options to Skip GitLab CI
+* use "git push -o ci.skip"
+* use "except" in .gitlab-ci.yml
+
+
+### 2-2. Check the CI/CD page on GitLab
 
 # References:
 https://docs.gitlab.com/ee/ci/quick_start/README.html
