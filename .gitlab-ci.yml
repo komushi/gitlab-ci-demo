@@ -10,6 +10,7 @@ build_job:
     STACK_NAME: iot-policy
     REGION: ap-northeast-1
   script:
+    - aws configure set default.region $REGION
     - export validate_var="aws cloudformation validate-template --template-body=file://$PWD/cfn.yaml"
     - $validate_var
   only:
